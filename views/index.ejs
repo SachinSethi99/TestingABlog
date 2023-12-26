@@ -1,0 +1,26 @@
+<!-- index.ejs -->
+<h1>Welcome to My Blog</h1>
+
+<!-- Post Creation Form -->
+<form action="/create-post" method="POST">
+    <input type="text" name="title" placeholder="Post Title" required>
+    <textarea name="content" placeholder="Post Content" required></textarea>
+    <button type="submit">Create Post</button>
+</form>
+
+<!-- Post Viewing Section -->
+<section>
+    <% posts.forEach(post => { %>
+        <article>
+            <h2><%= post.title %></h2>
+            <p><%= post.content %></p>
+            <!-- Add forms for editing and deleting -->
+            <form action="/edit/<%= post.id %>" method="GET">
+                <button type="submit">Edit</button>
+            </form>
+            <form action="/delete/<%= post.id %>" method="POST">
+                <button type="submit">Delete</button>
+            </form>
+        </article>
+    <% }) %>
+</section>
